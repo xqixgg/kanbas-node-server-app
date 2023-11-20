@@ -20,6 +20,7 @@ function ModuleRoutes(app) {
   });
   app.delete("/api/modules/:id", (req, res) => {
     const { id } = req.params;
+    console.log(Database.modules);
     const index = Database.modules.findIndex((module) => module._id === id);
     if (index === -1) {
       res.status(404).send("Module not found");
@@ -29,6 +30,7 @@ function ModuleRoutes(app) {
     res.json(204);
   });
   app.post("/api/courses/:cid/modules", (req, res) => {
+    
     const newModule = {
       ...req.body,
       course: req.params.cid,
